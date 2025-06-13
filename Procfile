@@ -1,1 +1,1 @@
-web: dotnet Server.dll
+web: docker
