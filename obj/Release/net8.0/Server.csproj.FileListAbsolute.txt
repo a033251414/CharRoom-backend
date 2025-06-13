@@ -45,3 +45,4 @@ E:\桌面\React面試作業\Server\obj\Release\net8.0\refint\Server.dll
 E:\桌面\React面試作業\Server\obj\Release\net8.0\Server.pdb
 E:\桌面\React面試作業\Server\obj\Release\net8.0\Server.genruntimeconfig.cache
 E:\桌面\React面試作業\Server\obj\Release\net8.0\ref\Server.dll
+E:\桌面\React面試作業\Server\bin\Release\net8.0\web.config
