@@ -32,6 +32,8 @@ builder.Services.AddAuthentication(options =>
 
     };
 });
+//雙向
+builder.Services.AddSignalR();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -40,6 +42,8 @@ builder.Configuration.GetSection("MongoDBSettings"));
 builder.Services.AddSingleton<GroupService>();
 builder.Services.AddSingleton<UserService>();
 builder.Services.AddSingleton<MessageService>();
+
+
 builder.Services.AddSingleton<IMongoClient, MongoClient>(sp =>
 {
     var connectionString = builder.Configuration.GetConnectionString("MongoDb");
@@ -55,10 +59,11 @@ builder.Services.AddCors(options =>
         {
             policy.WithOrigins(
                     "http://localhost:5173",
-                    "https://a033251414.github.io"  
+                    "https://a033251414.github.io"
                 )
                 .AllowAnyHeader()
-                .AllowAnyMethod();
+                .AllowAnyMethod()
+                .AllowCredentials();
         });
 });
 
@@ -72,6 +77,10 @@ if (app.Environment.IsDevelopment())
 }
 //JWT
 app.UseAuthentication();
+
+//雙向
+app.MapHub<ChatHub>("/chatHub");
+
 app.UseCors("AllowReactApp");
 app.UseAuthorization();
 
