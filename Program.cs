@@ -5,12 +5,15 @@ using MongoDB.Driver;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+//雙向
+using Microsoft.AspNetCore.Http.Connections;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //JWT
 builder.Services.AddSingleton<JwtService>();
 //雙向
+
 builder.Services.AddSignalR();
 
 builder.Services.AddAuthentication(options =>
@@ -90,7 +93,10 @@ app.UseAuthorization();
 
 
 //雙向
-app.MapHub<ChatHub>("/chathub");
+app.MapHub<ChatHub>("/chathub", options =>
+{
+    options.Transports = HttpTransportType.LongPolling;
+});
 
 app.UseHttpsRedirection();
 
