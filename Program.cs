@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 //雙向
 using Microsoft.AspNetCore.Http.Connections;
+using Server.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
