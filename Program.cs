@@ -77,14 +77,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-//JWT
-app.UseAuthentication();
+
 
 
 
 
 app.UseCors("AllowReactApp");
+
+//JWT
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 //雙向
 app.MapHub<ChatHub>("/chathub");
