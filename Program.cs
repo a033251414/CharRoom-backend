@@ -65,9 +65,9 @@ builder.Services.AddCors(options =>
                     "https://a033251414.github.io"
                 )
                 .AllowAnyHeader()
-                .AllowAnyMethod()
+                .AllowAnyMethod();
             //雙向
-               .AllowCredentials();
+            //    .AllowCredentials();
                
         });
 });
