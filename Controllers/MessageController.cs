@@ -31,7 +31,7 @@ namespace Server.Controllers
             if (message == null)
                 return BadRequest("Invalid message");
 
-            Console.WriteLine($"[後端接收資料] GroupId: {message.GroupId}, UserId: {message.UserId}, Content: {message.Content}");
+            Console.WriteLine($"[後端接收資料] GroupId: {message.GroupId}, UserId: {message.UserName}, Content: {message.Content}");
             await _messageService.CreateMessageAsync(message);
             return Ok(message);
         }

@@ -10,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 //JWT
 builder.Services.AddSingleton<JwtService>();
+//雙向
+builder.Services.AddSignalR();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -32,8 +34,6 @@ builder.Services.AddAuthentication(options =>
 
     };
 });
-//雙向
-builder.Services.AddSignalR();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -63,7 +63,9 @@ builder.Services.AddCors(options =>
                 )
                 .AllowAnyHeader()
                 .AllowAnyMethod()
-                .AllowCredentials();
+            //雙向
+               .AllowCredentials();
+               
         });
 });
 
@@ -78,11 +80,14 @@ if (app.Environment.IsDevelopment())
 //JWT
 app.UseAuthentication();
 
-//雙向
-app.MapHub<ChatHub>("/chatHub");
+
+
 
 app.UseCors("AllowReactApp");
 app.UseAuthorization();
+
+//雙向
+app.MapHub<ChatHub>("/chathub");
 
 app.UseHttpsRedirection();
 

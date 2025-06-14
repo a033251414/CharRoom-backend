@@ -14,7 +14,7 @@ namespace Server.Models
         public string? GroupId { get; set; }  //群組ID
 
         [BsonElement("userId")]
-        public string? UserId { get; set; }  //使用者ID
+        public string? UserName { get; set; }  //使用者名字
 
         [BsonElement("content")]
         public string? Content { get; set; }  //訊息內容
