@@ -92,7 +92,6 @@ app.UseCors("AllowReactApp");
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapGet("/", () => "Hello from ASP.NET backend");
 //雙向
 app.MapHub<ChatHub>("/chathub", options =>
 {
