@@ -31,14 +31,32 @@ namespace Server.Services
             .ToListAsync();
         }
 
-         public async Task<bool> SetMessageToNullAsync(string id)
+        public async Task<bool> SetMessageToNullAsync(string id)
         {
-          var filter = Builders<Message>.Filter.Eq(m => m.Id, id);
-          var update = Builders<Message>.Update.Set(m => m.Content, null);
-          var result = await _messages.UpdateOneAsync(filter, update);
-         return result.ModifiedCount > 0;
+            var filter = Builders<Message>.Filter.Eq(m => m.Id, id);
+            var update = Builders<Message>.Update.Set(m => m.Content, null);
+            var result = await _messages.UpdateOneAsync(filter, update);
+            return result.ModifiedCount > 0;
         }
         
+        public async Task<List<Message>> SearchMessagesInGroupAsync(string groupId, string keyword)
+        {
+            if (string.IsNullOrWhiteSpace(groupId) || string.IsNullOrWhiteSpace(keyword))
+                return new List<Message>();
+
+            var filter = Builders<Message>.Filter.And(
+                Builders<Message>.Filter.Eq(m => m.GroupId, groupId),
+                Builders<Message>.Filter.Regex(m => m.Content, new MongoDB.Bson.BsonRegularExpression(keyword, "i")) // 忽略大小寫
+            );
+
+            return await _messages
+                .Find(filter)
+                .SortByDescending(m => m.CreatedAt)
+                .ToListAsync();
+        }
+
+        
+       
 
     }
 }
