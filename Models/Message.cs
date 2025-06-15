@@ -13,7 +13,7 @@ namespace Server.Models
         [BsonElement("groupId")]
         public string? GroupId { get; set; }  //群組ID
 
-        [BsonElement("userId")]
+        [BsonElement("userName")]
         public string? UserName { get; set; }  //使用者名字
 
         [BsonElement("content")]

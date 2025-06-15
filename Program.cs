@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 //雙向
-using Microsoft.AspNetCore.Http.Connections;
 using Server.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +13,6 @@ var builder = WebApplication.CreateBuilder(args);
 //JWT
 builder.Services.AddSingleton<JwtService>();
 //雙向
-
 builder.Services.AddSignalR();
 
 builder.Services.AddAuthentication(options =>
@@ -62,7 +60,7 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy.WithOrigins(
-                    // "http://localhost:5173",
+                    "http://localhost:5173",
                     "https://a033251414.github.io"
                 )
                 .AllowAnyHeader()
@@ -87,16 +85,13 @@ if (app.Environment.IsDevelopment())
 
 
 app.UseCors("AllowReactApp");
-
+app.UseRouting();
 //JWT
 app.UseAuthentication();
 app.UseAuthorization();
 
 //雙向
-app.MapHub<ChatHub>("/chathub", options =>
-{
-    options.Transports = HttpTransportType.LongPolling;
-});
+app.MapHub<ChatHub>("/chathub");
 
 app.UseHttpsRedirection();
 
