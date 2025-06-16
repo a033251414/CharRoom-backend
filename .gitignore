@@ -1,0 +1,33 @@
+# --- 📦 BUILD FILES ---
+bin/
+obj/
+
+# --- 🔧 USER FILES ---
+*.user
+*.suo
+
+# --- 🐞 LOG FILES ---
+*.log
+
+# --- 🧪 TEST RESULTS ---
+TestResults/
+
+# --- 🌐 DOTNET PUBLISH ---
+*.db
+*.exe
+*.dll
+*.pdb
+*.cache
+*.zip
+
+# --- ⚙️ VISUAL STUDIO ---
+.vs/
+.vscode/
+
+# --- 🔐 SECRETS (IF NEEDED) ---
+appsettings.Development.json
+secrets.json
+
+# --- 🗑️ MISC ---
+*.DS_Store
+Thumbs.db
