@@ -25,8 +25,9 @@ namespace Server.Hubs
         //更新收回訊息
         public async Task RecallMessage(string groupId, string messageId)
         {
+            Console.WriteLine($"[RecallMessage] Group:{groupId}, Message:{messageId}");
             await Clients.Group(groupId).SendAsync("ReceiveRecalledMessage", messageId);
-            Console.WriteLine($"RecallMessage called for Group: {groupId}, MessageId: {messageId}");
+          
         }
     }
     
