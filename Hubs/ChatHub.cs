@@ -11,7 +11,7 @@ namespace Server.Hubs
             Console.WriteLine($"{Context.ConnectionId} joined group {groupId}");
         }
 
-        // 用戶離開某個群組（可選）
+        // 用戶離開某個群組
         public async Task LeaveGroup(string groupId)
         {
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupId);
