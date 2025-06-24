@@ -85,8 +85,10 @@ if (app.Environment.IsDevelopment())
 
 
 
-app.UseCors("AllowReactApp");
+
+app.UseHttpsRedirection();
 app.UseRouting();
+app.UseCors("AllowReactApp");
 //JWT
 app.UseAuthentication();
 app.UseAuthorization();
@@ -94,7 +96,7 @@ app.UseAuthorization();
 //雙向
 app.MapHub<ChatHub>("/chathub");
 
-app.UseHttpsRedirection();
+
 
 app.MapControllers();
 
